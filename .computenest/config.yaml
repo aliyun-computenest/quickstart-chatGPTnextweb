@@ -10,13 +10,27 @@ Service:
           ArtifactId: ${Artifact.EcsImage.ArtifactId}
           ArtifactVersion: ${Artifact.EcsImage.ArtifactVersion}
     TemplateConfigs:
-      - Name: 单机版
-        Url: 'ros_templates/template.yaml'
+    - Name: 单机版
+      Url: 'ros_templates/template.yaml'
   ServiceType: private
   ServiceInfo:
-    Locale: zh-CN
-    ShortDescription: 一键部署您的跨平台ChatGPT应用，支持完整的Markdown、LaTex公式、Mermaid流程图等。界面美观，响应迅速，兼容深色模式和PWA，快速加载，数据隐私安全。功能丰富，方便创建、分享个性化对话，内含海量中英文prompt，自动压缩聊天记录，支持多国语言。
-    Image: 'resources/icons/chatgpt-next-web.jpg'
+  - Locale: zh-CN
+    Name: ChatGPTNextWeb社区版
+    ShortDescription: "一键部署您的跨平台ChatGPT应用，支持完整的Markdown、LaTex公式、Mermaid流程图等。界面美观，响应迅速，兼容深色模式和PWA，快速加载，数据隐私安全。功能丰富，方便创建、分享个性化对话，内含海量中英文prompt，自动压缩聊天记录，支持多国语言。\n"
+    Image: 
+      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/5141674772595072/service-image/551de813-1466-4718-8bc6-48fdff76e9fd.jpg
+    Softwares: []
+  - Locale: en-US
+    Name: ChatGPTNextWeb CE
+    ShortDescription: Deploy your cross-platform ChatGPT app with one click, supporting
+      full Markdown, LaTeX formulas, Mermaid flowcharts, and more. Enjoy a beautiful,
+      responsive interface, compatible with Dark Mode and PWA, fast loading times,
+      and secure data privacy. Rich in features, it makes it easy to create and share
+      personalized conversations, including a vast library of prompts in both Chinese
+      and English, automatically compressing chat logs, and supporting multiple languages.
+    Image: 
+      https://service-info-public.oss-cn-hangzhou.aliyuncs.com/5141674772595072/service-image/551de813-1466-4718-8bc6-48fdff76e9fd.jpg
+    Softwares: []
 Artifact:
   EcsImage:
     ArtifactType: EcsImage
@@ -34,7 +48,7 @@ ImageBuilder:
     InternetMaxBandwidthOut: 100
     CommandType: RunShellScript
     Timeout: 10800
-    Tags: [ ]
+    Tags: []
     CommandContent: |-
       #!/bin/bash
       sudo yum update -y
@@ -55,11 +69,11 @@ ImageBuilder:
       }
       EOF
       sudo systemctl daemon-reload
-      
+
       yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
       yum makecache fast
       yum install -y git docker-ce jq
       systemctl enable docker
       systemctl start docker
-      
+
       docker pull yidadaa/chatgpt-next-web

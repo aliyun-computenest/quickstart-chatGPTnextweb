@@ -1,0 +1,9 @@
+templateName: 单机版
+regionId: ap-southeast-1
+parameters:
+  WebPassword: "$[iact3-auto]"
+  PayType: "PostPaid"
+  EcsInstanceType: "$[iact3-auto]"
+  OpenAIAPIKey: "sk-xxxx"
+  InstancePassword: "$[iact3-auto]"
+caseId: stc-24a1b516a3af4a7fa913
